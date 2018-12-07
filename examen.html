@@ -11,22 +11,7 @@
 <body>
     <div id="content">
         <section class="datos-facturacion">
-    <div class="container">
-      
-          <!-- <div class="bloque">
-            <div class="col-md-11 col-sm-11">
-              <h2>CATEGORÍAS</h2>
-              <ul class="menu-perfil educacion-menu">
-                <li><a data-link="http://localhost:8888/MSD_eLearningrespaldo/module" href="">Mis cursos</a></li>
-                <li> <a  data-link="http://localhost:8888/MSD_eLearningrespaldo/module" href="">Resúmen del módulo</a></li>
-                <li> <a class="active-m-educacion" href="" data-link="http://localhost:8888/MSD_eLearningrespaldo/module">Mis exámenes</a></li>                
-                <li> <a data-link="http://localhost:8888/MSD_eLearningrespaldo/mis-diplomas" href="">Mis diplomas</a></li>
-                <li> <a data-link="http://localhost:8888/MSD_eLearningrespaldo/mis-diplomas" href="">Mis puntos</a></li>
-                <li> <a data-link="http://localhost:8888/MSD_eLearningrespaldo/mis-diplomas" href="">Soporte</a></li><br>
-              </ul>
-            </div>
-          </div>
-        </div> -->
+    <div class="container">      
         <div class="row">
               <div class="col-md-12">
                 <div class="nav-reg" aria-label="breadcrumb">
@@ -147,8 +132,7 @@
                            </fieldset>
                           <div class="contenedor-botones d-flex justify-content-between">
                             <div class="btn-form-menu d-flex justify-content-between">
-                                <button id="btn-one" disabled></button>
-                                <button id="btn-two" disabled></button>    
+                                <button id="btn-one" disabled></button>    
                             </div>
                             <div class="btn-form-menu-dos">
                               <button disabled class="siguie">Siguiente</button>
@@ -167,8 +151,7 @@
                                 insisos = inputs.find('input'),
                                 numeroDeinsisos= insisos.length,
                                 siguiente = $('.siguie'),
-                                btnUno = $('#btn-one'),
-                                btnDos = $('#btn-two');
+                                btnUno = $('#btn-one');
 
                              if(siguiente.attr('disabled') == 'disabled'){
                                   siguiente.css({ 'opacity': '0.8' });
@@ -180,11 +163,6 @@
                               }else{
                                 btnUno.css({ 'opacity': '1' });  
                               }
-                              if(btnDos.attr('disabled') == 'disabled'){
-                                  btnDos.css({ 'opacity': '0.8' });
-                              } else{
-                                btnDos.css({ 'opacity': '1' });
-                              } 
                             for( a=0 ; a < numeroDeinsisos - 1; a++){
                                 // console.log(insisos[a]);
                                 insisos[a].addEventListener('click',function(){
@@ -202,9 +180,7 @@
                                        var inputDisabled = this.disabled;
                                         if(inputDisabled == false){
                                               siguiente.css("opacity", '1');
-                                              btnDos.css("opacity", '1'); 
-                                              siguiente.removeAttr("disabled");
-                                              btnDos.removeAttr("disabled");                                    
+                                              siguiente.removeAttr("disabled");                                    
                                           siguiente.on('click', function(e){
                                               e.preventDefault();
                                                 
@@ -239,11 +215,9 @@
                                                     btnUno.removeAttr("disabled");  
 
                                                     var btnSigui = document.querySelector('.siguie');
-                                                    var btnUnos = document.querySelector('#btn-one');
-                                                    var btnDoss = document.querySelector('#btn-two');                                                                                          
+                                                    var btnUnos = document.querySelector('#btn-one');                                                    
                                                     btnSigui.disabled = true;
                                                     btnUnos.disabled = false;
-                                                    btnDoss.disabled = true;
 
                                                     if(siguiente.attr('disabled') == 'disabled'){
                                                           siguiente.css({ 'opacity': '0.8' });
@@ -264,70 +238,6 @@
                                                                                             
                                               
                                                 
-                                            });
-                                            btnDos.on('click', function(e){
-                                              e.preventDefault();
-                                              console.log('segundo'); 
-
-                                              if (desp == true){
-                                                console.log('final');
-                                              }else{
-
-                                                // field.style.display ='none';
-                                                for(f = 0 ;f < numeroDeinsisos ; f++){
-                                                  if(inputs[f] == field){
-                                                    
-                                                    var data = field.getAttribute("dataind");
-                                                    
-                                                    var desp = aparecer(data);
-                                                    if (desp == true){
-                                                      
-                                                      field.style.display ='block';
-
-                                                    }else if(desp == false){
-                                                      field.style.display ='none';
-                                                      var inputSiguiente = parseInt(data) + 1;
-                                                      inputs[inputSiguiente].style.display ='block';                                                      
-                                                    }                                                                                               
-                                                  }
-                                                }                    
-                                                 if (desp == true){
-                                                  console.log('Endddd');
-                                                  siguiente.css("display",'none');
-                                                  $('#enviar-btn').css({
-                                                    "display": 'block',
-                                                    "opacity": '1'
-                                                    });
-                                                }
-                                                else{
-                                                    btnUno.css("opacity", '1');                                     
-                                                    btnUno.removeAttr("disabled");  
-
-                                                    var btnSigui = document.querySelector('.siguie');
-                                                    var btnUnos = document.querySelector('#btn-one');
-                                                    var btnDoss = document.querySelector('#btn-two');                                                                                          
-                                                    btnSigui.disabled = true;
-                                                    btnUnos.disabled = false;
-                                                    btnDoss.disabled = true;
-
-                                                    if(siguiente.attr('disabled') == 'disabled'){
-                                                          siguiente.css({ 'opacity': '0.8' });
-                                                      }else{
-                                                        siguiente.css({ 'opacity': '1' });
-                                                      }
-                                                    if(btnUno.attr('disabled') == 'disabled'){
-                                                        btnUno.css({ 'opacity': '0.8' });                                
-                                                      }else{
-                                                        btnUno.css({ 'opacity': '1' });  
-                                                      }
-                                                      if(btnDos.attr('disabled') == 'disabled'){
-                                                          btnDos.css({ 'opacity': '0.8' });
-                                                      } else{
-                                                        btnDos.css({ 'opacity': '1' });
-                                                      }
-                                                }
-
-                                              }                                                                                                                                    
                                             });
                                             btnUno.on('click', function(e){
                                               e.preventDefault();
