@@ -242,31 +242,28 @@
                                                 // console.log(inputs[f]);
                                                   if(inputs[f] == field){
                                                     
-                                                    var data = field.getAttribute("dataind");
-                                                    console.log(data);
-                                                    
-                                                    var despDos = apareceAlrevez(data);
+                                                    var dataD = field.getAttribute("dataind");
+                                                      console.log(dataD);
+                                                    var despDos = apareceAlrevez(dataD);                                                    
+                                                    console.log(despDos);
+                                                    fields= inputs.length - 2;
+                                                    console.log(fields);
 
-                                                    console.log(despDos + 'desDos true or false');
-                                                    if (despDos == true && data == 0){
-                                                      console.log('final 0');
-                                                    }else if(despDos == true){
-                                                      console.log('final final');                                                      
+                                                    for(i=fields;i>-1;i--){
+
+                                                      if (despDos == true){
+                                                      
+                                                      field.style.display ='block';
+
                                                     }else if(despDos == false){
-                                                      console.log('gield');
-                                                      console.log(field);
                                                       field.style.display ='none';
+                                                      var inputSiguiente = parseInt(data) + 1;
+                                                      inputs[inputSiguiente].style.display ='block';                                                      
+                                                    }   
+                                                      
                                                     }
 
-                                                    // if (despDos == true){
-                                                      
-                                                    //   field.style.display ='nonce';
-
-                                                    // }else if(despDos == false){
-                                                    //   field.style.display ='none';
-                                                    //   var inputSiguiente = parseInt(data) + 1;
-                                                    //   inputs[inputSiguiente].style.display ='block';                                                      
-                                                    // }                                                                                               
+                                                                                                                                                
                                                   }
                                                 }     
 
