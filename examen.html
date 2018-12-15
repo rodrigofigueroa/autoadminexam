@@ -169,14 +169,14 @@
                                     var field = this.parentElement.parentElement.parentElement;
                                     var childrens = field.children;                       
                                     
-                                    for(c=1;c<childrens.length;c++) {
-                                        var radioButtons = childrens[c].childNodes;
-                                        var inputChildren = radioButtons[1].children;
+                                    //for(c=1;c<childrens.length;c++) {
+                                       // var radioButtons = childrens[c].childNodes;
+                                       // var inputChildren = radioButtons[1].children;
                                         // for(d=1;d< inputChildren.length; d++){
                                         //   inputChildren[0].disabled = true;
                                         //   this.disabled = false;
                                         // }
-                                       }
+                                      // }
                                        var inputDisabled = this.disabled;
                                         if(inputDisabled == false){
                                               siguiente.css("opacity", '1');
@@ -185,7 +185,7 @@
                                               e.preventDefault();
                                                 
                                                 // field.style.display ='none';
-                                                for(f = 0 ;f < numeroDeinsisos ; f++){
+                                                for(f = 0 ;f < 3 ; f++){
                                                   if(inputs[f] == field){
                                                     
                                                     var data = field.getAttribute("dataind");
@@ -240,12 +240,22 @@
 
                                                 var fieldStatic = $('#formId').children(),
                                                     allField = inputs.length - 1;
-                                                    console.log(allField);
+                                                    console.log('all' +allField);
                                                     for(f = 0 ;f < allField ; f++){
                                                       if(inputs[f] == field){
                                                         
                                                         var dataD = field.getAttribute("dataind");                                                        
                                                         var despD = apareceAlrevez(dataD);
+                                                        var fieldELiminar = (parseInt(alRevez(field)) + 1);
+                                                        var fieldApareser = parseInt(alRevez(field));
+                                                        console.log(fieldELiminar);
+                                                        console.log(inputs[fieldELiminar]);
+                                                        if( fieldELiminar == allField){
+                                                          inputs[fieldELiminar].style.display = 'block';
+                                                        }else{
+                                                          inputs[fieldELiminar].style.display = 'none';
+                                                        }
+                                                            inputs[fieldApareser].style.display = 'block';
 
                                                         if (despD == true && dataD == 0){
                                                           console.log('empezar final');
@@ -254,14 +264,22 @@
                                                           
                                                         }else if (despD == true){
                                                           console.log('final final');
+                                                          siguiente.css("display",'block');
+                                                            $('#enviar-btn').css({
+                                                              "display": 'none',
+                                                              "opacity": '0.8'
+                                                              });
                                                           
                                                         }else if(despD == false){
                                                           console.log('no final');
+                                                          btnUno.removeAttr('disabled');
+                                                          btnUno.css('opacity','1');
                                                         }
                                                         
                                                         siguiente.css("opacity", '1');
                                                         siguiente.removeAttr("disabled");                                                    
                                                       }
+                                                    
                                                 }   
                                                     
                                             });
@@ -303,7 +321,18 @@
                                }
                             }   
 
+                            function alRevez(valorField){
+                              var valorField = valorField;
+                              var numeroField = valorField.getAttribute('dataind');
+                              console.log(numeroField);
+                              allField = inputs.length ;
+                              for(g=0; g < allField ;g++){
+                                if(g == parseInt(numeroField)){
+                                  return numeroField;
+                                }
+                              }
 
+                            }
                         });
                       </script>
 
