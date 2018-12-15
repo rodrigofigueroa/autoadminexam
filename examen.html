@@ -238,35 +238,32 @@
                                               e.preventDefault();
                                               // console.log('primero');
 
-                                              for(f = 0 ;f < numeroDeinsisos ; f++){
-                                                // console.log(inputs[f]);
-                                                  if(inputs[f] == field){
+                                                var fieldStatic = $('#formId').children(),
+                                                    allField = inputs.length - 1;
+                                                    console.log(allField);
+                                                    for(f = 0 ;f < allField ; f++){
+                                                      if(inputs[f] == field){
+                                                        
+                                                        var dataD = field.getAttribute("dataind");                                                        
+                                                        var despD = apareceAlrevez(dataD);
+
+                                                        if (despD == true && dataD == 0){
+                                                          console.log('empezar final');
+                                                          btnUno.attr('disabled','disabled');
+                                                          btnUno.css('opacity','0.8');
+                                                          
+                                                        }else if (despD == true){
+                                                          console.log('final final');
+                                                          
+                                                        }else if(despD == false){
+                                                          console.log('no final');
+                                                        }
+                                                        
+                                                        siguiente.css("opacity", '1');
+                                                        siguiente.removeAttr("disabled");                                                    
+                                                      }
+                                                }   
                                                     
-                                                    var dataD = field.getAttribute("dataind");
-                                                      console.log(dataD);
-                                                    var despDos = apareceAlrevez(dataD);                                                    
-                                                    console.log(despDos);
-                                                    fields= inputs.length - 2;
-                                                    console.log(fields);
-
-                                                    for(i=fields;i>-1;i--){
-
-                                                      if (despDos == true){
-                                                      
-                                                      field.style.display ='block';
-
-                                                    }else if(despDos == false){
-                                                      field.style.display ='none';
-                                                      var inputSiguiente = parseInt(data) + 1;
-                                                      inputs[inputSiguiente].style.display ='block';                                                      
-                                                    }   
-                                                      
-                                                    }
-
-                                                                                                                                                
-                                                  }
-                                                }     
-
                                             });
 
 
