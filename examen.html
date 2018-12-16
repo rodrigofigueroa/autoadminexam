@@ -147,11 +147,12 @@
                       <script>
                         $(document).ready(function(){
                             var inputs = $('#formId').children(),
-                                numeroDeInputs = inputs.length - 1,
+                                numeroDeField = inputs.length - 2,
                                 insisos = inputs.find('input'),
                                 numeroDeinsisos= insisos.length,
                                 siguiente = $('.siguie'),
                                 btnUno = $('#btn-one');
+                                ///console.log(numeroDeField);
 
                              if(siguiente.attr('disabled') == 'disabled'){
                                   siguiente.css({ 'opacity': '0.8' });
@@ -163,177 +164,57 @@
                               }else{
                                 btnUno.css({ 'opacity': '1' });  
                               }
-                            for( a=0 ; a < numeroDeinsisos - 1; a++){
-                                
-                                insisos[a].addEventListener('click',function(){
-                                    var field = this.parentElement.parentElement.parentElement;
-                                    var childrens = field.children;                       
-                                    
-                                    //for(c=1;c<childrens.length;c++) {
-                                       // var radioButtons = childrens[c].childNodes;
-                                       // var inputChildren = radioButtons[1].children;
-                                        // for(d=1;d< inputChildren.length; d++){
-                                        //   inputChildren[0].disabled = true;
-                                        //   this.disabled = false;
-                                        // }
-                                      // }
-                                       var inputDisabled = this.disabled;
-                                        if(inputDisabled == false){
-                                              siguiente.css("opacity", '1');
-                                              siguiente.removeAttr("disabled");                                    
-                                          siguiente.on('click', function(e){
-                                              e.preventDefault();
-                                                
-                                                // field.style.display ='none';
-                                                for(f = 0 ;f < 3 ; f++){
-                                                  if(inputs[f] == field){
-                                                    
-                                                    var data = field.getAttribute("dataind");
-                                                    
-                                                    var desp = aparecer(data);
-                                                    if (desp == true){
-                                                      
-                                                      field.style.display ='block';
 
-                                                    }else if(desp == false){
-                                                      field.style.display ='none';
-                                                      var inputSiguiente = parseInt(data) + 1;
-                                                      inputs[inputSiguiente].style.display ='block';                                                      
-                                                    }                                                                                               
-                                                  }
-                                                }                    
-                                                 if (desp == true){
-                                                  console.log('Endddd');
-                                                  siguiente.css("display",'none');
-                                                  $('#enviar-btn').css({
-                                                    "display": 'block',
-                                                    "opacity": '1'
-                                                    });
-                                                }
-                                                else{
-                                                    btnUno.css("opacity", '1');                                               
-                                                    btnUno.removeAttr("disabled");  
-
-                                                    var btnSigui = document.querySelector('.siguie');
-                                                    var btnUnos = document.querySelector('#btn-one');                                                    
-                                                    btnSigui.disabled = true;
-                                                    btnUnos.disabled = false;
-
-                                                    if(siguiente.attr('disabled') == 'disabled'){
-                                                          siguiente.css({ 'opacity': '0.8' });
-                                                      }else{
-                                                        siguiente.css({ 'opacity': '1' });
-                                                      }
-                                                    if(btnUno.attr('disabled') == 'disabled'){
-                                                        btnUno.css({ 'opacity': '0.8' });                                
-                                                      }else{
-                                                        btnUno.css({ 'opacity': '1' });  
-                                                      }
-                                                }
-                                                                                            
-                                              
-                                                
+                              for(a=0;a < numeroDeinsisos;a++){
+                                  insisos[a].addEventListener('click', function(){
+                                  siguiente.css('opacity','1');
+                                  siguiente.removeAttr('disabled');
+                                  var father = this.parentNode.parentNode.parentNode;
+                                  //console.log(father);
+                                  siguiente.click(function(e){
+                                    e.preventDefault();
+                                    btnUno.css('opacity','1');
+                                  btnUno.removeAttr('disabled');
+                                    var valorFather = father.getAttribute('dataind');                                    
+                                    for(b=0;b <= numeroDeField;b++){
+                                      if(b == valorFather){
+                                        if(numeroDeField == valorFather){
+                                          father.style.display = 'block';  
+                                          $(this).css('display','none');
+                                          $('#enviar-btn').css({
+                                            'display':'block',
+                                            'opacity':'1'
                                             });
-                                            btnUno.on('click', function(e){
-                                              e.preventDefault();
-                                              // console.log('primero');
-
-                                                var fieldStatic = $('#formId').children(),
-                                                    allField = inputs.length - 1;
-                                                    console.log('all' +allField);
-                                                    for(f = 0 ;f < allField ; f++){
-                                                      if(inputs[f] == field){
-                                                        
-                                                        var dataD = field.getAttribute("dataind");                                                        
-                                                        var despD = apareceAlrevez(dataD);
-                                                        var fieldELiminar = (parseInt(alRevez(field)) + 1);
-                                                        var fieldApareser = parseInt(alRevez(field));
-                                                        console.log(fieldELiminar);
-                                                        console.log(inputs[fieldELiminar]);
-                                                        if( fieldELiminar == allField){
-                                                          inputs[fieldELiminar].style.display = 'block';
-                                                        }else{
-                                                          inputs[fieldELiminar].style.display = 'none';
-                                                        }
-                                                            inputs[fieldApareser].style.display = 'block';
-
-                                                        if (despD == true && dataD == 0){
-                                                          console.log('empezar final');
-                                                          btnUno.attr('disabled','disabled');
-                                                          btnUno.css('opacity','0.8');
-                                                          
-                                                        }else if (despD == true){
-                                                          console.log('final final');
-                                                          siguiente.css("display",'block');
-                                                            $('#enviar-btn').css({
-                                                              "display": 'none',
-                                                              "opacity": '0.8'
-                                                              });
-                                                          
-                                                        }else if(despD == false){
-                                                          console.log('no final');
-                                                          btnUno.removeAttr('disabled');
-                                                          btnUno.css('opacity','1');
-                                                        }
-                                                        
-                                                        siguiente.css("opacity", '1');
-                                                        siguiente.removeAttr("disabled");                                                    
-                                                      }
-                                                    
-                                                }   
-                                                    
-                                            });
-
-
-
+                                        }else{
+                                          father.style.display = 'none';  
+                                          inputs[(parseInt(valorFather) + 1)].style.display = 'block';
                                         }
-                                });
-                            }
-
-                            function aparecer(valor){
-                            var inputs = $('#formId').children();
-                              var valor = parseInt(valor) +1;
-                              var final = numeroDeInputs;
-
-                              //console.log(final);
-                               if(valor == final){
-                                  return true;
-                               }else{
-                                  return false;
-                               }
-                               
-                            }
-
-                            function apareceAlrevez(valorDos){
-                              var inputs = $('#formId').children();
-                              
-                              var valorDos = parseInt(valorDos);
-                              
-                              var final = numeroDeInputs -1;
-                              var finaldos = 0;
-                              
-                              if(valorDos == final){
-                                  return true;
-                               }else if(valorDos == finaldos){
-                                  return true;
-                               }else{
-                                 return false;
-                               }
-                            }   
-
-                            function alRevez(valorField){
-                              var valorField = valorField;
-                              var numeroField = valorField.getAttribute('dataind');
-                              console.log(numeroField);
-                              allField = inputs.length ;
-                              for(g=0; g < allField ;g++){
-                                if(g == parseInt(numeroField)){
-                                  return numeroField;
-                                }
+                                      }
+                                    }
+                                  });                                  
+                                });                            
                               }
 
-                            }
+                              btnUno.click(function(e){
+                                    e.preventDefault();                                                                                                          
+                                    var inputs = $('#formId').children(),
+                                        numeroDeField = inputs.length - 2,
+                                        insisos = inputs.find('input'),
+                                        numeroDeinsisos= insisos.length;
+                                    for(d=0;d <= numeroDeField;d++){
+                                      var hid = inputs[d].style.display;
+                                      var valorFather = inputs[d].getAttribute('dataind');
+                                      if(hid == 'block' && valorFather ==  d){
+                                        inputs[d].style.display = 'none';
+                                        inputs[(d - 1)].style.display = 'block';
+                                        console.log(inputs[d]);
+                                      }
+                                    }                                
+                                  });
+                              
+
                         });
+
                       </script>
 
                      <!-- <script>
