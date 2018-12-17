@@ -7,6 +7,14 @@
     <title>Document</title>
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">    
     <link rel="stylesheet" href="./assets/site/msdstyles.css">
+    <style>
+      fieldset{
+        display: none;
+      }
+      .activar-pregunta{
+        display: block!important;
+      }
+    </style>
 </head>
 <body>
     <div id="content">
@@ -45,7 +53,7 @@
                             <h3>Pregunta 1</h3>
                             <p>Selecciona la respuesta</p>
                             <form action="" method=""  id="formId">
-                          <fieldset class="form-group" id="fiel-one" dataind="0">
+                          <fieldset class="form-group activar-pregunta" id="fiel-one" dataind="0">
                               <!-- <legend>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</legend> -->
                               <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h4>									    						   
                               <div class="form-check">									    		
@@ -107,25 +115,25 @@
                             <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h4>                                     
                             <div class="form-check">                          
                               <div class="radio">
-                                    <input id="radio-9" name="p-dos" type="radio" name="optionsRadiosp2" id="optionsRadios3" value="option2">
+                                    <input id="radio-9" type="radio" name="optionsRadiosp3" id="optionsRadios3" value="option3">
                                     <label class="form-check-label radio-label" for="radio-9">3 one is this and thatbe sure to include why it's great</label>
                                </div>               
                             </div>
                             <div class="form-check">  
                                   <div class="radio">
-                                    <input id="radio-10" name="p-dos" type="radio" name="optionsRadiosp2" id="optionsRadios3" value="option2">
+                                    <input id="radio-10" type="radio" name="optionsRadiosp3" id="optionsRadios3" value="option3">
                                     <label class="form-check-label radio-label" for="radio-10">3 one is this and thatbe sure to include why it's great</label>
                                   </div>
                               </div>
                               <div class="form-check">  
                                   <div class="radio">
-                                    <input id="radio-11" name="p-dos" type="radio" name="optionsRadiosp2" id="optionsRadios3" value="option2">
+                                    <input id="radio-11" type="radio" name="optionsRadiosp3" id="optionsRadios3" value="option3">
                                     <label class="form-check-label radio-label" for="radio-11">3 one is this and thatbe sure to include why it's great</label>
                                   </div>
                               </div>
                               <div class="form-check">  
                                 <div class="radio">
-                                  <input id="radio-12" name="p-dos" type="radio" name="optionsRadiosp2" id="optionsRadios3" value="option2">
+                                  <input id="radio-12" type="radio" name="optionsRadiosp3" id="optionsRadios3" value="option3">
                                   <label class="form-check-label radio-label" for="radio-12">3 one is this and thatbe sure to include why it's great</label>
                                 </div>
                             </div>
@@ -151,6 +159,7 @@
                                 insisos = inputs.find('input'),
                                 numeroDeinsisos= insisos.length,
                                 siguiente = $('.siguie'),
+                                enviarSubmit = $('#enviar-btn'),
                                 btnUno = $('#btn-one');
                                 ///console.log(numeroDeField);
 
@@ -170,48 +179,67 @@
                                   siguiente.css('opacity','1');
                                   siguiente.removeAttr('disabled');
                                   var father = this.parentNode.parentNode.parentNode;
-                                  //console.log(father);
-                                  siguiente.click(function(e){
-                                    e.preventDefault();
+                                  //console.log(father);                                                                    
+                                });                            
+                              }
+                              siguiente.click(function(e){
+                                    e.preventDefault();  
                                     btnUno.css('opacity','1');
-                                  btnUno.removeAttr('disabled');
-                                    var valorFather = father.getAttribute('dataind');                                    
-                                    for(b=0;b <= numeroDeField;b++){
-                                      if(b == valorFather){
-                                        if(numeroDeField == valorFather){
-                                          father.style.display = 'block';  
-                                          $(this).css('display','none');
-                                          $('#enviar-btn').css({
-                                            'display':'block',
-                                            'opacity':'1'
-                                            });
+                                    btnUno.removeAttr('disabled');
+                                    siguiente.css('opacity','0.8');
+                                    siguiente.attr('disabled','disabled');
+
+                                    for(d = 0; d <= numeroDeField; d++){
+                                      var hiden = inputs[d].className;
+                                      var activo = hiden.split(' ');
+                                      var numeroField = inputs[d].getAttribute('dataind');                                                                     
+                                      if(d == parseInt(numeroField) && activo[1] == 'activar-pregunta'){ 
+                                        if(d == numeroDeField){
+                                          //console.log('enter' + numeroDeField);                                 
+                                        inputs[numeroField].className = 'form-group';
+                                        inputs[parseInt(numeroField)].className = 'form-group activar-pregunta';
+                                        $(this).css('display','none');
+                                        enviarSubmit.css('display','block');
+                                        enviarSubmit.css('opacity','1');
                                         }else{
-                                          father.style.display = 'none';  
-                                          inputs[(parseInt(valorFather) + 1)].style.display = 'block';
+                                          //console.log('enter' + numeroField);                                 
+                                          inputs[numeroField].className = 'form-group';
+                                          inputs[parseInt(numeroField)+1].className = 'form-group activar-pregunta';
+                                        break
                                         }
                                       }
                                     }
-                                  });                                  
-                                });                            
-                              }
-
-                              btnUno.click(function(e){
-                                    e.preventDefault();                                                                                                          
-                                    var inputs = $('#formId').children(),
-                                        numeroDeField = inputs.length - 2,
-                                        insisos = inputs.find('input'),
-                                        numeroDeinsisos= insisos.length;
-                                    for(d=0;d <= numeroDeField;d++){
-                                      var hid = inputs[d].style.display;
-                                      var valorFather = inputs[d].getAttribute('dataind');
-                                      if(hid == 'block' && valorFather ==  d){
-                                        inputs[d].style.display = 'none';
-                                        inputs[(d - 1)].style.display = 'block';
-                                        console.log(inputs[d]);
-                                      }
-                                    }                                
+                                    
                                   });
-                              
+                              btnUno.click(function(e){
+                                    e.preventDefault();   
+                                    console.log('btn'); 
+                                    siguiente.css('opacity','1');
+                                    siguiente.removeAttr('disabled');
+
+                                    for(d = 0; d <= numeroDeField; d++){
+                                      var hiden = inputs[d].className;
+                                      var activo = hiden.split(' ');
+                                      var numeroField = inputs[d].getAttribute('dataind');                                                                     
+                                      if(d == parseInt(numeroField) && activo[1] == 'activar-pregunta'){     
+                                        console.log(numeroField);
+                                        if(numeroField == 1){
+                                          console.log('enter' + numeroField);                                 
+                                          inputs[numeroField].className = 'form-group';
+                                          inputs[parseInt(numeroField)-1].className = 'form-group activar-pregunta';
+                                          btnUno.css('opacity','0.8');
+                                          btnUno.attr('disabled','disabled');
+                                        }else{
+                                          console.log('enter' + numeroField);                                 
+                                          inputs[numeroField].className = 'form-group';
+                                          inputs[parseInt(numeroField)-1].className = 'form-group activar-pregunta';
+                                          enviarSubmit.css('display','none');
+                                          siguiente.css('display','block');
+                                        }                                 
+                                        
+                                      }
+                                    }                                              
+                                  });                             
 
                         });
 
